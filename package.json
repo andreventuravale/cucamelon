@@ -1,0 +1,47 @@
+{
+  "name": "gherkish",
+  "version": "1.0.1",
+  "description": "Write gherkin-like tests and intermix them with your jasmine or mocha suites. Gherkish is a simple, small and standalone javascript library.",
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/andreventuravale/gherkish.git"
+  },
+  "keywords": [
+    "bdd",
+    "cucumber",
+    "gherkin",
+    "jasmine",
+    "jest",
+    "mocha"
+  ],
+  "scripts": {
+    "cover": "nyc --exit --reporter=lcov --reporter=text --per-file npm run test",
+    "lint": "standard --fix",
+    "test:watch": "mocha -ui tdd -watch test",
+    "test": "mocha -ui tdd test"
+  },
+  "standard": {
+    "globals": [
+      "setup",
+      "suite",
+      "suiteSetup",
+      "suiteTeardown",
+      "teardown",
+      "test"
+    ]
+  },
+  "author": "andreventuravale",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/andreventuravale/gherkish/issues"
+  },
+  "homepage": "https://github.com/andreventuravale/gherkish#readme",
+  "devDependencies": {
+    "chai": "^4.2.0",
+    "mocha": "^6.1.4",
+    "nyc": "^14.1.1",
+    "standard": "^12.0.1",
+    "testdouble": "^3.12.1"
+  }
+}
