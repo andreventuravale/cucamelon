@@ -44,5 +44,8 @@
     "nyc": "^14.1.1",
     "standard": "^12.0.1",
     "testdouble": "^3.12.1"
+  },
+  "engines": {
+    "node": ">=8"
   }
 }

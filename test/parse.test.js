@@ -6,20 +6,28 @@ suite('Parsing', () => {
   test('Breaks a text into an array of steps', () => {
     const text = `
       given 1
-      and 2
-      but 3
-      when 4
-      and 5
-      but 6
-      then 7
-      and 8
-      but 9
+      and   2
+      but   3
+      when  4
+      and   5
+      but   6
+      then  7
+      and   8
+      but   9
     `
 
     const steps = parse(text)
 
     expect(steps).to.be.eql([
-      '1', '2', '3', '4', '5', '6', '7', '8', '9'
+      { text: 'given 1', step: '1' },
+      { text: 'and   2', step: '2' },
+      { text: 'but   3', step: '3' },
+      { text: 'when  4', step: '4' },
+      { text: 'and   5', step: '5' },
+      { text: 'but   6', step: '6' },
+      { text: 'then  7', step: '7' },
+      { text: 'and   8', step: '8' },
+      { text: 'but   9', step: '9' }
     ])
   })
 
@@ -48,11 +56,11 @@ suite('Parsing', () => {
     const steps = parse(text)
 
     expect(steps).to.be.eql([
-      'foo is not ignored',
-      'bar is not ignored',
-      'baz is not ignored',
-      'qux is not ignored',
-      'waldo is not ignored'
+      { text: 'given foo is not ignored', step: 'foo is not ignored' },
+      { text: 'when bar is not ignored', step: 'bar is not ignored' },
+      { text: 'then baz is not ignored', step: 'baz is not ignored' },
+      { text: 'and qux is not ignored', step: 'qux is not ignored' },
+      { text: 'but waldo is not ignored', step: 'waldo is not ignored' }
     ])
   })
 
@@ -68,11 +76,11 @@ suite('Parsing', () => {
     const steps = parse(text)
 
     expect(steps).to.be.eql([
-      'foo',
-      'bar',
-      'baz',
-      'qux',
-      'waldo'
+      { text: 'gIven foo', step: 'foo' },
+      { text: 'whEn bar', step: 'bar' },
+      { text: 'tHen baz', step: 'baz' },
+      { text: 'AND qux', step: 'qux' },
+      { text: 'bUt waldo', step: 'waldo' }
     ])
   })
 
