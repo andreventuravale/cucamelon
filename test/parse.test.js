@@ -32,26 +32,27 @@ suite('Parsing', () => {
 
         Foo bar baz
 
-      given foo
-
-      when bar
-
-      then baz
-
-      and qux
-
-      but waldo
-
+      foo given is ignored
+      bar when is ignored
+      baz then is ignored
+      qux and is ignored
+      waldo but is ignored
+      
+      given foo is not ignored
+      when bar is not ignored
+      then baz is not ignored
+      and qux is not ignored
+      but waldo is not ignored
     `
 
     const steps = parse(text)
 
     expect(steps).to.be.eql([
-      'foo',
-      'bar',
-      'baz',
-      'qux',
-      'waldo'
+      'foo is not ignored',
+      'bar is not ignored',
+      'baz is not ignored',
+      'qux is not ignored',
+      'waldo is not ignored'
     ])
   })
 

@@ -7,7 +7,7 @@ function parse (text) {
     .trim()
     .split(/\n/g)
     .map(ln => ln.trim())
-    .filter(ln => /(given|when|then|and|but)/i.test(ln))
+    .filter(ln => /^(given|when|then|and|but)/i.test(ln))
     .map(ln => ln.slice(ln.indexOf(' ')).trim())
 }
 
