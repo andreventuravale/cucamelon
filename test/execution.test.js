@@ -15,13 +15,13 @@ suite('Execution', function () {
     this.run = rewiremock.proxy('../src/run', {
       it: () => this.fakeIt,
       test: () => this.fakeIt,
-      parse: parse
+      parse
     })
   })
 
   test('Each step executes itself plus all the others before', function () {
     const suiteInstance = {
-      description: `
+      title: `
         Scenario: 1 + 2 = 3
 
         Given x is 1
@@ -35,17 +35,18 @@ suite('Execution', function () {
 
     const that = this
 
-    const assertAndTrackCall = (stepName) => {
+    const assertStepCall = (stepName) => {
       return function () {
         callSequence.push(stepName)
-        expect(this).to.be.eql(that.testInstance)
+
+        expect(this, 'The "it" method not called with the expected context').to.be.eql(that.testInstance)
       }
     }
 
-    const setX = assertAndTrackCall('setX')
-    const setY = assertAndTrackCall('setY')
-    const sumXY = assertAndTrackCall('sumXY')
-    const assertResult = assertAndTrackCall('assertResult')
+    const setX = assertStepCall('setX')
+    const setY = assertStepCall('setY')
+    const sumXY = assertStepCall('sumXY')
+    const assertResult = assertStepCall('assertResult')
 
     this.testInstance.steps = {
       'x is 1': setX,
