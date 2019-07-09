@@ -4,7 +4,7 @@ const run = require('../src/run')
 
 suite('Integration', () => {
   test('Each step executes itself plus all the others before', () => {
-    const jasmineSuite = {
+    const suiteInstance = {
       description: `
         Scenario: 1 + 2 = 3
 
@@ -20,7 +20,7 @@ suite('Integration', () => {
     const assertAndTrackCall = (stepName) => {
       return function () {
         callSequence.push(stepName)
-        expect(this).to.be.eql(jasmineSuite)
+        expect(this).to.be.eql(suiteInstance)
       }
     }
 
@@ -37,12 +37,12 @@ suite('Integration', () => {
         'I get 3': assertResult
       }
 
-      testHandler.call(jasmineSuite)
+      testHandler.call(suiteInstance)
     }
 
     global.it = it
 
-    run.call(jasmineSuite)
+    run.call(suiteInstance)
 
     expect(callSequence).to.be.eqls([
       'setX',
@@ -53,7 +53,7 @@ suite('Integration', () => {
   })
 
   test('Throws an error if the steps definitions were not found', () => {
-    const jasmineSuite = {
+    const suiteInstance = {
       description: `
         Scenario: foo bar baz
 
@@ -66,19 +66,19 @@ suite('Integration', () => {
     const it = function (testText, testHandler) {
       this.steps = undefined
 
-      testHandler.call(jasmineSuite)
+      testHandler.call(suiteInstance)
     }
 
     global.it = it
 
     expect(() => {
-      run.call(jasmineSuite)
+      run.call(suiteInstance)
     }).to.throw('The steps definitions were not found. You can set them before each or all tests.')
   })
 
   suite('Throws an error if a step definition is not found', () => {
     test('At very beginning', () => {
-      const jasmineSuite = {
+      const suiteInstance = {
         description: `
         Scenario: foo bar baz
 
@@ -91,18 +91,18 @@ suite('Integration', () => {
       const it = function (testText, testHandler) {
         this.steps = {}
 
-        testHandler.call(jasmineSuite)
+        testHandler.call(suiteInstance)
       }
 
       global.it = it
 
       expect(() => {
-        run.call(jasmineSuite)
+        run.call(suiteInstance)
       }).to.throw('Step not defined: foo')
     })
 
     test('In the middle', () => {
-      const jasmineSuite = {
+      const suiteInstance = {
         description: `
         Scenario: foo bar baz
 
@@ -117,18 +117,18 @@ suite('Integration', () => {
           foo: () => { }
         }
 
-        testHandler.call(jasmineSuite)
+        testHandler.call(suiteInstance)
       }
 
       global.it = it
 
       expect(() => {
-        run.call(jasmineSuite)
+        run.call(suiteInstance)
       }).to.throw('Step not defined: bar')
     })
 
     test('At very end', () => {
-      const jasmineSuite = {
+      const suiteInstance = {
         description: `
         Scenario: foo bar baz
 
@@ -144,13 +144,13 @@ suite('Integration', () => {
           bar: () => { }
         }
 
-        testHandler.call(jasmineSuite)
+        testHandler.call(suiteInstance)
       }
 
       global.it = it
 
       expect(() => {
-        run.call(jasmineSuite)
+        run.call(suiteInstance)
       }).to.throw('Step not defined: baz')
     })
   })
