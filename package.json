@@ -1,7 +1,7 @@
 {
   "name": "gherkish",
   "version": "1.0.1",
-  "description": "Write gherkin-like tests and intermix them with your jasmine or mocha suites. Gherkish is a simple, small and standalone javascript library.",
+  "description": "Write gherkin-like tests and intermix them with your existing jasmine or mocha suites.",
   "main": "src/index.js",
   "repository": {
     "type": "git",
