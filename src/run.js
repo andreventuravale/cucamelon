@@ -1,33 +1,33 @@
+const it = require('./it')
 const parse = require('./parse')
 
 module.exports = function () {
-  const text = this.description
+  const scenarioText = this.title || this.description
 
-  const { it } = global
+  const testFn = it()
 
-  const steps = parse(text)
+  const parsedSteps = parse(scenarioText)
 
-  steps.forEach(
-    ({ text }, stepIndex) => it.call(
-      this,
+  parsedSteps.forEach(
+    ({ text }, stepIndex) => testFn(
       text,
       function () {
-        const spec = this
+        const testInstance = this
 
-        if (typeof spec.steps !== 'object') {
+        if (typeof testInstance.steps !== 'object') {
           throw new Error('The steps definitions were not found. You can set them before each or all tests.')
         }
 
         for (let i = 0; i <= stepIndex; i++) {
-          const { step } = steps[i]
+          const { step } = parsedSteps[i]
 
-          const stepDefinition = spec.steps[step]
+          const stepDefinition = testInstance.steps[step]
 
           if (!stepDefinition) {
             throw new Error(`Step not defined: ${step}`)
           }
 
-          stepDefinition.apply(spec)
+          stepDefinition.apply(testInstance)
         }
       }
     )
