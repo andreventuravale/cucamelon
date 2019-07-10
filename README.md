@@ -1,8 +1,16 @@
 [![Build Status](https://travis-ci.org/andreventuravale/gherkish.svg?branch=master)](https://travis-ci.org/andreventuravale/gherkish) [![Coverage Status](https://coveralls.io/repos/github/andreventuravale/gherkish/badge.svg)](https://coveralls.io/github/andreventuravale/gherkish)
 
-#### Usage examples
+## Table of Contents
 
-##### Node + Mocha + Chai
+1. [Usage](#usage)
+2. [Install](#install)
+3. [Roadmap](#roadmap)
+
+<a id="usage">
+  <h2 align="center">Usage</h2>
+</a>
+
+<h3>Node + Mocha + Chai</h2>
 
 ```javascript
 const { expect } = require('chai')
@@ -42,17 +50,42 @@ suite('Basic Math', () => {
 })
 ```
 
-#### Roadmap
+<a id="install">
+  <h2 align="center">Install</h2>
+</a>
 
-##### Completed
+```bash
+npm i gerkish --save-dev
+```
+
+or
+
+```bash
+yarn add gerkish --dev
+```
+
+
+<a id="roadmap">
+  <h2 align="center">Roadmap</h2>
+</a>
+
+<h3>Completed</h2>
 
 - [x] Mocha integration
   - [x] BDD style
   - [x] TDD style
 
-##### Pending
+<h3>Planned</h2>
 
-- [ ] i18n
+- [ ] I18n
 - [ ] Jasmine integration
 - [ ] Jest integration
 - [ ] Typed arguments
+
+<h3>Under consideration</h2>
+
+- [ ] **AST based parser covering most of Gherkin's syntax**
+  - Pros:
+    - Better semantics and possibilities
+  - Cons:
+    - Increased complexity
