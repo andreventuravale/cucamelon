@@ -1,6 +1,6 @@
 const { expect } = require('chai')
 
-const { runSteps } = require('../../../../src')
+const { runSteps } = require('../../../src')
 
 suite('Integration', () => {
   suite('Mocha', () => {

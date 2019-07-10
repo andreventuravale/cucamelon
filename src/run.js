@@ -19,15 +19,34 @@ module.exports = function () {
         }
 
         for (let i = 0; i <= stepIndex; i++) {
-          const { step } = parsedSteps[i]
+          const { step: parsedStep } = parsedSteps[i]
 
-          const stepDefinition = testInstance.steps[step]
+          const keys = Object.keys(testInstance.steps)
 
-          if (!stepDefinition) {
-            throw new Error(`Step not defined: ${step}`)
+          let didMatch = false
+          let pattern = ''
+          let regex = {}
+          let stepIndex = -1
+
+          do {
+            stepIndex++
+            pattern = keys[stepIndex]
+            regex = new RegExp(pattern)
+            didMatch = regex.test(parsedStep)
+          } while (stepIndex < keys.length && !didMatch)
+
+          if (stepIndex >= keys.length || !didMatch) {
+            throw new Error(`Step not defined: ${parsedStep}`)
           }
 
-          stepDefinition.apply(testInstance)
+          const stepDefinition = testInstance.steps[pattern]
+
+          const args = parsedStep
+            .match(regex)
+            .slice(1)
+            .map(capture => capture)
+
+          stepDefinition.apply(testInstance, args)
         }
       }
     )

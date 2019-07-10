@@ -1,6 +1,6 @@
 const { expect } = require('chai')
 
-const parse = require('../src/parse')
+const parse = require('../../src/parse')
 
 const rewiremock = require('rewiremock').default
 
@@ -12,7 +12,7 @@ suite('Execution', function () {
       fn.apply(this, arguments)
     }.bind(this.testInstance)
 
-    this.run = rewiremock.proxy('../src/run', {
+    this.run = rewiremock.proxy('../../src/run', {
       it: () => this.fakeIt,
       test: () => this.fakeIt,
       parse

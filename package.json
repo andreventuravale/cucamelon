@@ -18,8 +18,8 @@
   "scripts": {
     "cover": "nyc --exit --reporter=lcov --reporter=text --per-file npm run test",
     "lint": "standard --fix",
-    "test:watch": "mocha --recursive -ui tdd -watch test",
-    "test": "mocha -ui tdd test && mocha -ui tdd test/integration/mocha/tdd && mocha -ui bdd test/integration/mocha/bdd"
+    "test:watch": "mocha -ui tdd -watch --recursive test",
+    "test": "mocha -ui tdd --recursive test && mocha -ui tdd --recursive test-integration/mocha/tdd && mocha -ui bdd --recursive test-integration/mocha/bdd"
   },
   "standard": {
     "globals": [
