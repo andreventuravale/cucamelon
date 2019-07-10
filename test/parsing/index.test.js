@@ -1,6 +1,6 @@
 const { expect } = require('chai')
 
-const parse = require('../../src/parse')
+const parse = require('../../lib/parse')
 
 suite('Parsing', () => {
   test('Breaks a text into an array of steps', () => {

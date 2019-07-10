@@ -11,7 +11,7 @@ suite('Execution', function () {
         fn.apply(this, arguments)
       }.bind(this.testInstance)
 
-      this.run = rewiremock.proxy('../../src/run', {
+      this.run = rewiremock.proxy('../../lib/run', {
         it: () => this.fakeIt,
         test: () => this.fakeIt
       })

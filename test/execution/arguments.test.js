@@ -1,6 +1,6 @@
 const { expect } = require('chai')
 
-const run = require('../../src/run')
+const run = require('../../lib/run')
 
 suite('Execution', function () {
   suite('Arguments', function () {
