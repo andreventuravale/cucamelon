@@ -7,7 +7,7 @@
 ```javascript
 const { expect } = require('chai')
 
-const { runSteps } = require('../../../src')
+const { runSteps } = require('gherkish')
 
 suite('Basic Math', () => {
   setup(function () {
