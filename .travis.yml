@@ -4,6 +4,10 @@ node_js:
 
 jobs:
   include:
+    - stage: lint check
+      node_js: node
+      script: npm run lint:check
+
     - stage: coveralls
       node_js: node
       script: nyc npm test && nyc report --reporter=text-lcov | coveralls
