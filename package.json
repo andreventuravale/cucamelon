@@ -27,7 +27,9 @@
     "test:mocha:bdd": "mocha -ui bdd --recursive test-integration/mocha/bdd",
     "test:mocha:tdd": "mocha -ui tdd --recursive test-integration/mocha/tdd",
     "test:mocha": "npm run test:mocha:tdd && npm run test:mocha:bdd",
-    "test": "npm run test:core && npm run test:integrations"
+    "test:samples": "mocha -ui tdd --recursive test-samples",
+    "test:samples:dev": "mocha -ui tdd -watch --recursive test-samples",
+    "test": "npm run test:core && npm run test:integrations && npm run test:samples"
   },
   "standard": {
     "globals": [
