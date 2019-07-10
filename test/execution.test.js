@@ -39,7 +39,7 @@ suite('Execution', function () {
       return function () {
         callSequence.push(stepName)
 
-        expect(this, 'The "it" method not called with the expected context').to.be.eql(that.testInstance)
+        expect(this, 'The step was called with the wrong context').to.be.eql(that.testInstance)
       }
     }
 
