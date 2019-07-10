@@ -20,8 +20,14 @@
     "lint:check": "standard",
     "lint": "standard --fix",
     "prepublish": "npm run lint:check && npm run test",
-    "test:watch": "mocha -ui tdd -watch --recursive test",
-    "test": "mocha -ui tdd --recursive test && mocha -ui tdd --recursive test-integration/mocha/tdd && mocha -ui bdd --recursive test-integration/mocha/bdd"
+    "test:core": "mocha -ui tdd --recursive test",
+    "test:dev": "mocha -ui tdd -watch --recursive test",
+    "test:integrations": "npm run test:mocha && npm run test:jasmine",
+    "test:jasmine": "jasmine test-integration/jasmine/**/*.test.js",
+    "test:mocha:bdd": "mocha -ui bdd --recursive test-integration/mocha/bdd",
+    "test:mocha:tdd": "mocha -ui tdd --recursive test-integration/mocha/tdd",
+    "test:mocha": "npm run test:mocha:tdd && npm run test:mocha:bdd",
+    "test": "npm run test:core && npm run test:integrations"
   },
   "standard": {
     "globals": [
@@ -48,6 +54,7 @@
   "devDependencies": {
     "chai": "^4.2.0",
     "coveralls": "^3.0.4",
+    "jasmine": "^3.4.0",
     "mocha": "^6.1.4",
     "nyc": "^14.1.1",
     "rewire": "^4.0.1",

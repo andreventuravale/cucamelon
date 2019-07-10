@@ -74,11 +74,11 @@ yarn add gerkish --dev
 - [x] Mocha integration
   - [x] BDD style
   - [x] TDD style
+- [x] Jasmine integration
 
 <h3>Planned</h2>
 
 - [ ] I18n
-- [ ] Jasmine integration
 - [ ] Jest integration
 - [ ] Typed arguments
 

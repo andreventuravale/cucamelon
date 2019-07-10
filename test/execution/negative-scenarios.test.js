@@ -2,7 +2,7 @@ const { expect } = require('chai')
 
 const rewiremock = require('rewiremock').default
 
-suite.only('Execution', function () {
+suite('Execution', function () {
   suite('Negative Scenarios', function () {
     setup(function () {
       this.testInstance = {}
