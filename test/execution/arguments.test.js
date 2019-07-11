@@ -2,8 +2,8 @@ const { expect } = require('chai')
 
 const run = require('../../lib/run')
 
-suite('Execution', function () {
-  suite('Arguments', function () {
+suite('Execution', () => {
+  suite('Arguments', () => {
     suite('Figures out the arguments by matching the scenario input against the steps definitions.', () => {
       setup(function () {
         this.steps = {

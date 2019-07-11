@@ -2,7 +2,7 @@ const { expect } = require('chai')
 
 const rewiremock = require('rewiremock').default
 
-suite('Execution', function () {
+suite('Execution', () => {
   setup(function () {
     this.testInstance = {}
 
@@ -32,12 +32,10 @@ suite('Execution', function () {
 
     const that = this
 
-    const assertStepCall = (stepName) => {
-      return function () {
-        callSequence.push(stepName)
+    const assertStepCall = stepName => function () {
+      callSequence.push(stepName)
 
-        expect(this, 'The step was called with the wrong context').to.be.eql(that.testInstance)
-      }
+      expect(this, 'The step was called with the wrong context').to.be.eql(that.testInstance)
     }
 
     const setX = assertStepCall('setX')
@@ -78,7 +76,7 @@ suite('Execution', function () {
     }).to.throw('The steps definitions were not found. You can set them before each or all tests.')
   })
 
-  suite('Throws an error if a step definition is not found', function () {
+  suite('Throws an error if a step definition is not found', () => {
     test('At very beginning', function () {
       const suiteInstance = {
         description: `
@@ -109,7 +107,7 @@ suite('Execution', function () {
       }
 
       this.testInstance.steps = {
-        foo: function () { }
+        foo () { }
       }
 
       expect(() => {
@@ -129,8 +127,8 @@ suite('Execution', function () {
       }
 
       this.testInstance.steps = {
-        foo: function () { },
-        bar: function () { }
+        foo () { },
+        bar () { }
       }
 
       expect(() => {

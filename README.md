@@ -50,6 +50,37 @@ suite('Basic Math', () => {
 })
 ```
 
+<h3>Typed arguments using the feature utility</h2>
+
+```javascript
+const { expect } = require('chai')
+
+const { feature } = require('../lib')
+
+suite('Basic Math', () => {
+  setup(function () {
+    this.steps = {
+      'x is (.*)'      : function (x)   { this.x = x },
+      'I add (.*) to x': function (add) { this.x += add },
+      'y is (.*)'      : function (y)   { this.y = y },
+      'I sum x and y'  : function ()    { this.z = this.x + this.y },
+      'I get (.*)'     : function (z)   { expect(this.z).to.eql(z) }
+    }
+  })
+
+  feature`
+    Scenario: Basic math
+
+    Given x is ${1}
+    And I add ${10} to x
+    And I add ${20} to x
+    And y is ${2}
+    When I sum x and y
+    Then I get ${33}
+  `
+})
+```
+
 <a id="install">
   <h2 align="center">Install</h2>
 </a>
@@ -76,11 +107,14 @@ yarn add gerkish --dev
   - [x] TDD style
 - [x] Jasmine integration
 
+<h3>Experimental</h2>
+
+- [x] Typed arguments
+
 <h3>Planned</h2>
 
 - [ ] I18n
 - [ ] Jest integration
-- [ ] Typed arguments
 
 <h3>Under consideration</h2>
 

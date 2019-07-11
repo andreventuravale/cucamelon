@@ -117,7 +117,7 @@ suite('Parsing', () => {
   })
 
   test('Given an empty text it returns an empty array', () => {
-    const text = ` \r\n\t \t\n\r `
+    const text = ' \r\n\t \t\n\r '
 
     const steps = parse(text)
 

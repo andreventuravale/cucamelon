@@ -2,8 +2,8 @@ const { expect } = require('chai')
 
 const rewiremock = require('rewiremock').default
 
-suite('Execution', function () {
-  suite('Negative Scenarios', function () {
+suite('Execution', () => {
+  suite('Negative Scenarios', () => {
     setup(function () {
       this.testInstance = {}
 
@@ -30,10 +30,10 @@ suite('Execution', function () {
       }
 
       const fineSteps = {
-        'x is (.*)': (x) => expect(x).to.eql('1'),
-        'y is (.*)': (y) => expect(y).to.eql('2'),
+        'x is (.*)': x => expect(x).to.eql('1'),
+        'y is (.*)': y => expect(y).to.eql('2'),
         'I sum x and y': (...args) => expect(args).to.eql([]),
-        'I get (.*)': (z) => expect(z).to.eql('3')
+        'I get (.*)': z => expect(z).to.eql('3')
       }
 
       expect(() => {
