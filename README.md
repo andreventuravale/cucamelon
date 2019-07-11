@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.org/andreventuravale/gherkish.svg?branch=master)](https://travis-ci.org/andreventuravale/gherkish) [![Coverage Status](https://coveralls.io/repos/github/andreventuravale/gherkish/badge.svg)](https://coveralls.io/github/andreventuravale/gherkish)
+[![Build Status](https://travis-ci.org/andreventuravale/cucamelon.svg?branch=master)](https://travis-ci.org/andreventuravale/cucamelon) [![Coverage Status](https://coveralls.io/repos/github/andreventuravale/cucamelon/badge.svg)](https://coveralls.io/github/andreventuravale/cucamelon)
 
 ## Table of Contents
 
@@ -15,7 +15,7 @@
 ```javascript
 const { expect } = require('chai')
 
-const { runSteps } = require('gherkish')
+const { runSteps } = require('cucamelon')
 
 suite('Basic Math', () => {
   setup(function () {
@@ -55,7 +55,7 @@ suite('Basic Math', () => {
 ```javascript
 const { expect } = require('chai')
 
-const { feature } = require('../lib')
+const { feature } = require('cucamelon')
 
 suite('Basic Math', () => {
   setup(function () {
@@ -86,13 +86,13 @@ suite('Basic Math', () => {
 </a>
 
 ```bash
-npm i gerkish --save-dev
+npm i cucamelon --save-dev
 ```
 
 or
 
 ```bash
-yarn add gerkish --dev
+yarn add cucamelon --dev
 ```
 
 

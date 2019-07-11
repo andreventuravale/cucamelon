@@ -1,11 +1,11 @@
 {
-  "name": "gherkish",
-  "version": "1.0.1",
+  "name": "cucamelon",
+  "version": "0.0.1",
   "description": "Write gherkin-like tests and intermix them with your existing jasmine or mocha suites.",
   "main": "src/index.js",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/andreventuravale/gherkish.git"
+    "url": "git+https://github.com/andreventuravale/cucamelon.git"
   },
   "keywords": [
     "bdd",
@@ -16,10 +16,10 @@
     "mocha"
   ],
   "scripts": {
+    "check": "npm run lint:check && npm run test",
     "cover": "nyc --exit --reporter=lcov --reporter=text --per-file npm run test",
     "lint:check": "standard",
     "lint": "standard --fix",
-    "prepublish": "npm run lint:check && npm run test",
     "test:core": "mocha -ui tdd --recursive test",
     "test:dev": "mocha -ui tdd -watch --recursive test",
     "test:integrations": "npm run test:mocha && npm run test:jasmine",
@@ -27,8 +27,8 @@
     "test:mocha:bdd": "mocha -ui bdd --recursive test-integration/mocha/bdd",
     "test:mocha:tdd": "mocha -ui tdd --recursive test-integration/mocha/tdd",
     "test:mocha": "npm run test:mocha:tdd && npm run test:mocha:bdd",
-    "test:samples": "mocha -ui tdd --recursive test-samples",
     "test:samples:dev": "mocha -ui tdd -watch --recursive test-samples",
+    "test:samples": "mocha -ui tdd --recursive test-samples",
     "test": "npm run test:core && npm run test:integrations && npm run test:samples"
   },
   "standard": {
@@ -50,9 +50,9 @@
   "author": "andreventuravale",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/andreventuravale/gherkish/issues"
+    "url": "https://github.com/andreventuravale/cucamelon/issues"
   },
-  "homepage": "https://github.com/andreventuravale/gherkish#readme",
+  "homepage": "https://github.com/andreventuravale/cucamelon#readme",
   "devDependencies": {
     "chai": "^4.2.0",
     "coveralls": "^3.0.4",
