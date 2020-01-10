@@ -1,6 +1,6 @@
 const { expect } = require('chai')
 
-const { feature } = require('../lib')
+const { document } = require('../lib')
 
 suite('Samples', () => {
   suite('Typed arguments', () => {
@@ -14,7 +14,7 @@ suite('Samples', () => {
       }
     })
 
-    feature`
+    document`
       Scenario: Basic math
 
       Given x is ${1}

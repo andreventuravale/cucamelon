@@ -2,19 +2,19 @@ const { expect } = require('chai')
 
 const td = require('testdouble')
 
-const feature = require('../../lib/feature')
+const document = require('../../lib/document')
 
 const rewiremock = require('rewiremock').default
 
 suite('Execution', () => {
   suite('Arguments', () => {
     suite('Typed', () => {
-      suite('The feature template function calls the suite with hints for the types of the arguments.', () => {
+      suite('The document template function calls the suite with hints for the types of the arguments.', () => {
         setup(function () {
           this.fakeSuite = td.func()
           this.fakeRun = () => {}
 
-          this.feature = rewiremock.proxy('../../lib/feature', {
+          this.document = rewiremock.proxy('../../lib/document', {
             './suite': () => this.fakeSuite,
             './run': this.fakeRun
           })
@@ -25,7 +25,7 @@ suite('Execution', () => {
         })
 
         test('Numbers', function () {
-          this.feature`
+          this.document`
               Scenario: 1 + 2 = 3
 
               Given x is ${1}
@@ -64,7 +64,7 @@ suite('Execution', () => {
           }
         })
 
-        feature`
+        document`
           Scenario: 1 + 2 = 3
 
           Given x is ${1}

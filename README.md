@@ -55,7 +55,7 @@ suite('Basic Math', () => {
 ```javascript
 const { expect } = require('chai')
 
-const { feature } = require('cucamelon')
+const { document } = require('cucamelon')
 
 suite('Basic Math', () => {
   setup(function () {
@@ -68,7 +68,7 @@ suite('Basic Math', () => {
     }
   })
 
-  feature`
+  document`
     Scenario: Basic math
 
     Given x is ${1}
