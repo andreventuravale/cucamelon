@@ -16,6 +16,12 @@ suite('Execution', () => {
     })
   })
 
+  test('Empty test should be fine', function () {
+    this.run.call({
+      title: ''
+    })
+  })
+
   test('Each step executes itself plus all the others before', function () {
     const suiteInstance = {
       title: `
