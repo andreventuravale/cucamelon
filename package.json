@@ -1,6 +1,6 @@
 {
   "name": "cucamelon",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "description": "Write gherkin-like tests and intermix them with your existing jasmine or mocha suites.",
   "main": "lib/index.js",
   "repository": {
