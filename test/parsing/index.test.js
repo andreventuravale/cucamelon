@@ -5,6 +5,8 @@ const parse = require('../../lib/parse')
 suite('Parsing', () => {
   test('Breaks a text into an array of steps', () => {
     const text = `
+      Scenario: Aute et laborum laboris laborum pariatur laboris velit ea aliquip ut dolore cillum.
+
       Given Laborum ut exercitation laborum anim enim ad sit dolore id.
       And   Dolor mollit nulla sit cupidatat nostrud adipisicing laboris eu consectetur sit minim.
       But   Dolor elit elit incididunt consequat esse elit.
@@ -16,46 +18,163 @@ suite('Parsing', () => {
       But   Irure aliquip id laboris elit est proident.
     `
 
-    const steps = parse(text)
+    const metadata = parse(text)
 
-    expect(steps).to.be.eql([
-      {
-        text: 'Given Laborum ut exercitation laborum anim enim ad sit dolore id.',
-        step: 'Laborum ut exercitation laborum anim enim ad sit dolore id.'
-      },
-      {
-        text: 'And   Dolor mollit nulla sit cupidatat nostrud adipisicing laboris eu consectetur sit minim.',
-        step: 'Dolor mollit nulla sit cupidatat nostrud adipisicing laboris eu consectetur sit minim.'
-      },
-      {
-        text: 'But   Dolor elit elit incididunt consequat esse elit.',
-        step: 'Dolor elit elit incididunt consequat esse elit.'
-      },
-      {
-        text: 'When  Ex exercitation velit mollit aliquip proident qui duis.',
-        step: 'Ex exercitation velit mollit aliquip proident qui duis.'
-      },
-      {
-        text: 'And   Voluptate duis Lorem magna laboris aliquip fugiat elit culpa ad laborum.',
-        step: 'Voluptate duis Lorem magna laboris aliquip fugiat elit culpa ad laborum.'
-      },
-      {
-        text: 'But   Ipsum mollit amet occaecat elit veniam sit.',
-        step: 'Ipsum mollit amet occaecat elit veniam sit.'
-      },
-      {
-        text: 'Then  Fugiat reprehenderit ullamco reprehenderit id eiusmod commodo magna aliquip velit exercitation.',
-        step: 'Fugiat reprehenderit ullamco reprehenderit id eiusmod commodo magna aliquip velit exercitation.'
-      },
-      {
-        text: 'And   Culpa aute minim sit sint culpa ut proident eu minim voluptate magna proident occaecat.',
-        step: 'Culpa aute minim sit sint culpa ut proident eu minim voluptate magna proident occaecat.'
-      },
-      {
-        text: 'But   Irure aliquip id laboris elit est proident.',
-        step: 'Irure aliquip id laboris elit est proident.'
-      }
-    ])
+    expect(metadata).to.be.eql({
+      'type': 'statement',
+      'subtype': 'scenario',
+      'nodes': [
+        {
+          'type': 'title',
+          'text': 'Aute et laborum laboris laborum pariatur laboris velit ea aliquip ut dolore cillum.'
+        },
+        {
+          'type': 'step',
+          'subtype': 'given',
+          'nodes': [
+            {
+              'type': 'definition',
+              'text': 'Laborum ut exercitation laborum anim enim ad sit dolore id.'
+            },
+            {
+              'type': 'token',
+              'subtype': 'keyword',
+              'text': 'Given'
+            }
+          ]
+        },
+        {
+          'type': 'step',
+          'subtype': 'and',
+          'nodes': [
+            {
+              'type': 'definition',
+              'text': 'Dolor mollit nulla sit cupidatat nostrud adipisicing laboris eu consectetur sit minim.'
+            },
+            {
+              'type': 'token',
+              'subtype': 'keyword',
+              'text': 'And'
+            }
+          ]
+        },
+        {
+          'type': 'step',
+          'subtype': 'but',
+          'nodes': [
+            {
+              'type': 'definition',
+              'text': 'Dolor elit elit incididunt consequat esse elit.'
+            },
+            {
+              'type': 'token',
+              'subtype': 'keyword',
+              'text': 'But'
+            }
+          ]
+        },
+        {
+          'type': 'step',
+          'subtype': 'when',
+          'nodes': [
+            {
+              'type': 'definition',
+              'text': 'Ex exercitation velit mollit aliquip proident qui duis.'
+            },
+            {
+              'type': 'token',
+              'subtype': 'keyword',
+              'text': 'When'
+            }
+          ]
+        },
+        {
+          'type': 'step',
+          'subtype': 'and',
+          'nodes': [
+            {
+              'type': 'definition',
+              'text': 'Voluptate duis Lorem magna laboris aliquip fugiat elit culpa ad laborum.'
+            },
+            {
+              'type': 'token',
+              'subtype': 'keyword',
+              'text': 'And'
+            }
+          ]
+        },
+        {
+          'type': 'step',
+          'subtype': 'but',
+          'nodes': [
+            {
+              'type': 'definition',
+              'text': 'Ipsum mollit amet occaecat elit veniam sit.'
+            },
+            {
+              'type': 'token',
+              'subtype': 'keyword',
+              'text': 'But'
+            }
+          ]
+        },
+        {
+          'type': 'step',
+          'subtype': 'then',
+          'nodes': [
+            {
+              'type': 'definition',
+              'text': 'Fugiat reprehenderit ullamco reprehenderit id eiusmod commodo magna aliquip velit exercitation.'
+            },
+            {
+              'type': 'token',
+              'subtype': 'keyword',
+              'text': 'Then'
+            }
+          ]
+        },
+        {
+          'type': 'step',
+          'subtype': 'and',
+          'nodes': [
+            {
+              'type': 'definition',
+              'text': 'Culpa aute minim sit sint culpa ut proident eu minim voluptate magna proident occaecat.'
+            },
+            {
+              'type': 'token',
+              'subtype': 'keyword',
+              'text': 'And'
+            }
+          ]
+        },
+        {
+          'type': 'step',
+          'subtype': 'but',
+          'nodes': [
+            {
+              'type': 'definition',
+              'text': 'Irure aliquip id laboris elit est proident.'
+            },
+            {
+              'type': 'token',
+              'subtype': 'keyword',
+              'text': 'But'
+            }
+          ]
+        },
+        {
+          'subtype': 'keyword',
+          'text': 'Scenario',
+          'type': 'token'
+        },
+        {
+          'subtype': 'colon',
+          'text': ':',
+          'type': 'token'
+        }
+      ]
+    })
   })
 
   test('Ignores all lines that does not start with one of the following: "given", "when", "then", "and" or "but".', () => {
@@ -85,19 +204,133 @@ suite('Parsing', () => {
 
     `
 
-    const steps = parse(text)
+    const metadata = parse(text)
 
-    expect(steps).to.be.eql([
-      { text: 'given foo is not ignored', step: 'foo is not ignored' },
-      { text: 'when bar is not ignored', step: 'bar is not ignored' },
-      { text: 'then baz is not ignored', step: 'baz is not ignored' },
-      { text: 'and qux is not ignored', step: 'qux is not ignored' },
-      { text: 'but waldo is not ignored', step: 'waldo is not ignored' }
-    ])
+    expect(metadata).to.be.eql({
+      'type': 'statement',
+      'subtype': 'scenario',
+      'nodes': [
+        {
+          'type': 'title',
+          'text': 'foo bar baz'
+        },
+        {
+          'type': 'summary',
+          'text': 'Foo bar baz'
+        },
+        {
+          'type': 'summary',
+          'text': 'foo given is ignored'
+        },
+        {
+          'type': 'summary',
+          'text': 'bar when is ignored'
+        },
+        {
+          'type': 'summary',
+          'text': 'baz then is ignored'
+        },
+        {
+          'type': 'summary',
+          'text': 'qux and is ignored'
+        },
+        {
+          'type': 'summary',
+          'text': 'waldo but is ignored'
+        },
+        {
+          'type': 'step',
+          'subtype': 'given',
+          'nodes': [
+            {
+              'type': 'definition',
+              'text': 'foo is not ignored'
+            },
+            {
+              'type': 'token',
+              'subtype': 'keyword',
+              'text': 'given'
+            }
+          ]
+        },
+        {
+          'type': 'step',
+          'subtype': 'when',
+          'nodes': [
+            {
+              'type': 'definition',
+              'text': 'bar is not ignored'
+            },
+            {
+              'type': 'token',
+              'subtype': 'keyword',
+              'text': 'when'
+            }
+          ]
+        },
+        {
+          'type': 'step',
+          'subtype': 'then',
+          'nodes': [
+            {
+              'type': 'definition',
+              'text': 'baz is not ignored'
+            },
+            {
+              'type': 'token',
+              'subtype': 'keyword',
+              'text': 'then'
+            }
+          ]
+        },
+        {
+          'type': 'step',
+          'subtype': 'and',
+          'nodes': [
+            {
+              'type': 'definition',
+              'text': 'qux is not ignored'
+            },
+            {
+              'type': 'token',
+              'subtype': 'keyword',
+              'text': 'and'
+            }
+          ]
+        },
+        {
+          'type': 'step',
+          'subtype': 'but',
+          'nodes': [
+            {
+              'type': 'definition',
+              'text': 'waldo is not ignored'
+            },
+            {
+              'type': 'token',
+              'subtype': 'keyword',
+              'text': 'but'
+            }
+          ]
+        },
+        {
+          'subtype': 'keyword',
+          'text': 'Scenario',
+          'type': 'token'
+        },
+        {
+          'subtype': 'colon',
+          'text': ':',
+          'type': 'token'
+        }
+      ]
+    })
   })
 
   test('Keywords are case-insensitive', () => {
     const text = `
+      Scenario: foo
+
       gIven foo
       whEn bar
       tHen baz
@@ -105,15 +338,103 @@ suite('Parsing', () => {
       bUt waldo
     `
 
-    const steps = parse(text)
+    const metadata = parse(text)
 
-    expect(steps).to.be.eql([
-      { text: 'gIven foo', step: 'foo' },
-      { text: 'whEn bar', step: 'bar' },
-      { text: 'tHen baz', step: 'baz' },
-      { text: 'AND qux', step: 'qux' },
-      { text: 'bUt waldo', step: 'waldo' }
-    ])
+    expect(metadata).to.be.eql({
+      'type': 'statement',
+      'subtype': 'scenario',
+      'nodes': [
+        {
+          'type': 'title',
+          'text': 'foo'
+        },
+        {
+          'type': 'step',
+          'subtype': 'given',
+          'nodes': [
+            {
+              'type': 'definition',
+              'text': 'foo'
+            },
+            {
+              'type': 'token',
+              'subtype': 'keyword',
+              'text': 'gIven'
+            }
+          ]
+        },
+        {
+          'type': 'step',
+          'subtype': 'when',
+          'nodes': [
+            {
+              'type': 'definition',
+              'text': 'bar'
+            },
+            {
+              'type': 'token',
+              'subtype': 'keyword',
+              'text': 'whEn'
+            }
+          ]
+        },
+        {
+          'type': 'step',
+          'subtype': 'then',
+          'nodes': [
+            {
+              'type': 'definition',
+              'text': 'baz'
+            },
+            {
+              'type': 'token',
+              'subtype': 'keyword',
+              'text': 'tHen'
+            }
+          ]
+        },
+        {
+          'type': 'step',
+          'subtype': 'and',
+          'nodes': [
+            {
+              'type': 'definition',
+              'text': 'qux'
+            },
+            {
+              'type': 'token',
+              'subtype': 'keyword',
+              'text': 'AND'
+            }
+          ]
+        },
+        {
+          'type': 'step',
+          'subtype': 'but',
+          'nodes': [
+            {
+              'type': 'definition',
+              'text': 'waldo'
+            },
+            {
+              'type': 'token',
+              'subtype': 'keyword',
+              'text': 'bUt'
+            }
+          ]
+        },
+        {
+          'subtype': 'keyword',
+          'text': 'Scenario',
+          'type': 'token'
+        },
+        {
+          'subtype': 'colon',
+          'text': ':',
+          'type': 'token'
+        }
+      ]
+    })
   })
 
   test('Given an empty text it returns an empty array', () => {
