@@ -2,7 +2,7 @@
   "name": "cucamelon",
   "version": "0.0.3",
   "description": "Write gherkin-like tests and intermix them with your existing jasmine or mocha suites.",
-  "main": "src/index.js",
+  "main": "lib/index.js",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/andreventuravale/cucamelon.git"
