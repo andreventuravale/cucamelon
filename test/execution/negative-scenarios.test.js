@@ -12,9 +12,8 @@ suite('Execution', () => {
       }.bind(this.testInstance)
 
       this.run = rewiremock.proxy('../../lib/run', {
-        it: () => this.fakeIt,
-        test: () => this.fakeIt
-      })
+        './it': () => this.fakeIt
+      })()
     })
 
     test('Failed expectations propagate to the testing host', function () {

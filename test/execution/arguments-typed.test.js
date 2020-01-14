@@ -9,7 +9,7 @@ const rewiremock = require('rewiremock').default
 suite('Execution', () => {
   suite('Arguments', () => {
     suite('Typed', () => {
-      suite('The document template function calls the suite with hints for the types of the arguments.', () => {
+      suite.skip('The document template function calls the suite with hints for the types of the arguments.', () => {
         setup(function () {
           this.fakeSuite = td.func()
           this.fakeRun = () => {}
