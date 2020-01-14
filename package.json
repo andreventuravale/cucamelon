@@ -55,6 +55,7 @@
   "homepage": "https://github.com/andreventuravale/cucamelon#readme",
   "devDependencies": {
     "chai": "^4.2.0",
+    "clipboardy": "^2.1.0",
     "coveralls": "^3.0.4",
     "jasmine": "^3.4.0",
     "mocha": "^6.1.4",
