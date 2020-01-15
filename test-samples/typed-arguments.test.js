@@ -6,11 +6,11 @@ suite('Samples', () => {
   suite('Typed arguments', () => {
     setup(function () {
       this.steps = {
-        'x is (.*)': function (x) { this.x = x },
-        'I add (.*) to x': function (add) { this.x += add },
-        'y is (.*)': function (y) { this.y = y },
+        'x is {number}': function (x) { this.x = x },
+        'I add {number} to x': function (add) { this.x += add },
+        'y is {number}': function (y) { this.y = y },
         'I sum x and y': function () { this.z = this.x + this.y },
-        'I get (.*)': function (z) { expect(this.z).to.eql(z) }
+        'I get {number}': function (z) { expect(this.z).to.eql(z) }
       }
     })
 

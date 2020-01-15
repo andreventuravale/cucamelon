@@ -6,20 +6,20 @@ suite('Samples', () => {
   suite('Extracted arguments', () => {
     setup(function () {
       this.steps = {
-        'x is (.*)': function (x) {
-          this.x = Number(x)
+        'x is {number}': function (x) {
+          this.x = x
         },
 
-        'y is (.*)': function (y) {
-          this.y = Number(y)
+        'y is {number}': function (y) {
+          this.y = y
         },
 
         'I sum x and y': function () {
           this.z = this.x + this.y
         },
 
-        'I get (.*)': function (z) {
-          expect(this.z).to.eql(Number(z))
+        'I get {number}': function (z) {
+          expect(this.z).to.eql(z)
         }
       }
     })
