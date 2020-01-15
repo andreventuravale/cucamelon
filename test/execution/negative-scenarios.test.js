@@ -33,7 +33,7 @@ foo bar
 I was specting a feature, background, scenario, scenario outline, example, etc.`)
     })
 
-    test.skip('Failed expectations propagates to the testing host/runner', function () {
+    test('Failed expectations propagates to the testing host/runner', function () {
       const suiteInstance = {
         title: `
           Scenario: 1 + 2 = 3
@@ -46,16 +46,16 @@ I was specting a feature, background, scenario, scenario outline, example, etc.`
       }
 
       const fineSteps = {
-        'x is (.*)': x => expect(x).to.eql('1'),
-        'y is (.*)': y => expect(y).to.eql('2'),
+        'x is {number}': x => expect(x).to.eql(1),
+        'y is {number}': y => expect(y).to.eql(2),
         'I sum x and y': (...args) => expect(args).to.eql([]),
-        'I get (.*)': z => expect(z).to.eql('3')
+        'I get {number}': z => expect(z).to.eql(3)
       }
 
       expect(() => {
         this.testInstance.steps = {
           ...fineSteps,
-          'x is (.*)': () => expect(true, 'This step was forced to fail').to.eql(false)
+          'x is {number}': () => expect(true, 'This step was forced to fail').to.eql(false)
         }
 
         this.run.call(suiteInstance)
@@ -64,7 +64,7 @@ I was specting a feature, background, scenario, scenario outline, example, etc.`
       expect(() => {
         this.testInstance.steps = {
           ...fineSteps,
-          'y is (.*)': () => expect(true, 'This step was forced to fail').to.eql(false)
+          'y is {number}': () => expect(true, 'This step was forced to fail').to.eql(false)
         }
 
         this.run.call(suiteInstance)
@@ -82,7 +82,7 @@ I was specting a feature, background, scenario, scenario outline, example, etc.`
       expect(() => {
         this.testInstance.steps = {
           ...fineSteps,
-          'I get (.*)': () => expect(true, 'This step was forced to fail').to.eql(false)
+          'I get {number}': () => expect(true, 'This step was forced to fail').to.eql(false)
         }
 
         this.run.call(suiteInstance)
