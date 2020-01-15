@@ -1,10 +1,11 @@
+const { isEqual } = require('lodash')
 const rewiremock = require('rewiremock').default
 const td = require('testdouble')
 
-const isADeeplyEqualObject = td.matchers.create({
-  name: 'isADeeplyEqualObject',
+const isDeepEqual = td.matchers.create({
+  name: 'isDeepEqual',
   matches: function ([a], b) {
-    return JSON.stringify(a) === JSON.stringify(b)
+    return isEqual(a, b)
   }
 })
 
@@ -21,6 +22,8 @@ suite('Document template function', () => {
     this.fakeRun = td.func()
     this.fakeSuite = td.func()
 
+    rewiremock.forceCacheClear()
+
     this.document = rewiremock.proxy('../../lib/document', {
       './run': this.fakeRun,
       './suite': () => this.fakeSuite
@@ -32,7 +35,7 @@ suite('Document template function', () => {
   test('Calls the suite definition as expected and delegates execution to the run function', function () {
     td.when(
       this.fakeRun(
-        isADeeplyEqualObject(
+        isDeepEqual(
           {
             'type': 'statement',
             'subtype': 'scenario',

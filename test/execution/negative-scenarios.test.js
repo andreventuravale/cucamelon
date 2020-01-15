@@ -1,5 +1,4 @@
 const { expect } = require('chai')
-
 const rewiremock = require('rewiremock').default
 
 suite('Execution', () => {
@@ -11,12 +10,30 @@ suite('Execution', () => {
         fn.apply(this, arguments)
       }.bind(this.testInstance)
 
+      rewiremock.forceCacheClear()
+
       this.run = rewiremock.proxy('../../lib/run', {
         './it': () => this.fakeIt
       })()
     })
 
-    test('Failed expectations propagate to the testing host', function () {
+    test('Invalid gherkin input', function () {
+      const suiteInstance = {
+        title: `foo bar`
+      }
+
+      expect(() => {
+        this.run.call(suiteInstance)
+      }).to.throw(`Sorry I could not understand the gherkin:
+
+\`\`\`
+foo bar
+\`\`\`
+
+I was specting a feature, background, scenario, scenario outline, example, etc.`)
+    })
+
+    test.skip('Failed expectations propagates to the testing host/runner', function () {
       const suiteInstance = {
         title: `
           Scenario: 1 + 2 = 3

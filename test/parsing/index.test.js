@@ -440,9 +440,13 @@ suite('Parsing', () => {
   test('Given an empty text it returns an empty array', () => {
     const text = ' \r\n\t \t\n\r '
 
-    const steps = parse(text)
+    expect(() => parse(text)).to.throw(`Sorry I could not understand the gherkin:
 
-    expect(steps).to.be.eql([])
+\`\`\`
+${text}
+\`\`\`
+
+I was specting a feature, background, scenario, scenario outline, example, etc.`)
   })
 
   test('Given an undefined text it throws an error', () => {

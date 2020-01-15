@@ -1,5 +1,4 @@
 const { expect } = require('chai')
-
 const rewiremock = require('rewiremock').default
 
 suite('Execution', () => {
@@ -10,15 +9,11 @@ suite('Execution', () => {
       fn.apply(this, arguments)
     }.bind(this.testInstance)
 
+    rewiremock.forceCacheClear()
+
     this.run = rewiremock.proxy('../../lib/run', {
       './it': () => this.fakeIt
     })()
-  })
-
-  test('Empty test should be fine', function () {
-    this.run.call({
-      title: ''
-    })
   })
 
   test('Each step executes itself plus all the others before', function () {
@@ -65,7 +60,7 @@ suite('Execution', () => {
     ])
   })
 
-  test('Throws an error if the steps definitions were not found', function () {
+  test('Throws an error if the step definitions were not found', function () {
     const suiteInstance = {
       description: `
         Scenario: foo bar baz
@@ -78,11 +73,11 @@ suite('Execution', () => {
 
     expect(() => {
       this.run.call(suiteInstance)
-    }).to.throw('The steps definitions were not found. You can set them before each or all tests.')
+    }).to.throw('The step definitions were not found ( "this.steps" ).')
   })
 
   suite('Throws an error if a step definition is not found', () => {
-    test('At very beginning', function () {
+    test('At the very beginning', function () {
       const suiteInstance = {
         description: `
           Scenario: foo bar baz
@@ -97,7 +92,7 @@ suite('Execution', () => {
 
       expect(() => {
         this.run.call(suiteInstance)
-      }).to.throw('Step not defined: foo')
+      }).to.throw('No step definition found that matches: `foo`')
     })
 
     test('In the middle', function () {
@@ -117,10 +112,10 @@ suite('Execution', () => {
 
       expect(() => {
         this.run.call(suiteInstance)
-      }).to.throw('Step not defined: bar')
+      }).to.throw('No step definition found that matches: `bar`')
     })
 
-    test('At very end', function () {
+    test('At the very end', function () {
       const suiteInstance = {
         description: `
         Scenario: foo bar baz
@@ -138,7 +133,7 @@ suite('Execution', () => {
 
       expect(() => {
         this.run.call(suiteInstance)
-      }).to.throw('Step not defined: baz')
+      }).to.throw('No step definition found that matches: `baz`')
     })
   })
 })
