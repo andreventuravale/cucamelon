@@ -47,21 +47,7 @@ suite('Execution', () => {
             Then I get 3
           `,
           steps: {
-            'x is {foo}': function (...args) {
-              expect(args).to.eql([1])
-            },
-
-            'y is {number}': function (...args) {
-              expect(args).to.eql([2])
-            },
-
-            'I sum x and y': function (...args) {
-              expect(args).to.eql([])
-            },
-
-            'I get {number}': function (z) {
-              expect(z).to.eql(3)
-            }
+            'x is {foo}': function () {}
           }
         }
 
