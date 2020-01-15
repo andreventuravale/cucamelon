@@ -47,7 +47,7 @@ suite('Execution', () => {
             Then I get 3
           `,
           steps: {
-            'x is {foo}': function () {}
+            'x is {foo}': function () { }
           }
         }
 
