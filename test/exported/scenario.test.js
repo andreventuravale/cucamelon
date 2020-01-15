@@ -1,13 +1,8 @@
 const rewiremock = require('rewiremock').default
 const td = require('testdouble')
 
-suite('Document template function', () => {
+suite('Exported / Scenario template function', () => {
   setup(function () {
-  })
-
-  teardown(() => td.reset())
-
-  test('Calls the suite definition as expected and delegates execution to the run function', function () {
     this.fakeRun = td.func()
     this.fakeSuite = td.func()
 
@@ -15,13 +10,17 @@ suite('Document template function', () => {
       this.fakeRun(require('./metadata.json'))
     ).thenReturn('the return from run(metadata)')
 
-    this.document = rewiremock.proxy('../../lib/document', {
+    this.Scenario = rewiremock.proxy('../../lib/Scenario', {
       './run-metadata': this.fakeRun,
       './suite': () => this.fakeSuite
     })
+  })
 
-    this.document([
-      'Scenario: Aute et laborum laboris laborum pariatur laboris velit ea aliquip ut dolore cillum.',
+  teardown(() => td.reset())
+
+  test('Calls the suite definition as expected and delegates execution to the run function', function () {
+    this.Scenario([
+      ': Aute et laborum laboris laborum pariatur laboris velit ea aliquip ut dolore cillum.',
       '',
       '  Culpa nisi tempor sint voluptate cupidatat laborum ex duis non duis aliqua enim ex irure.',
       '  Minim sit Lorem incididunt reprehenderit aliqua cupidatat id aliquip consequat incididunt dolore in.',

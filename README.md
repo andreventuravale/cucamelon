@@ -15,7 +15,7 @@
 ```javascript
 const { expect } = require('chai')
 
-const { document } = require('cucamelon')
+const { Scenario } = require('cucamelon')
 
 suite('Basic Math', () => {
   setup(function () {
@@ -28,8 +28,7 @@ suite('Basic Math', () => {
     }
   })
 
-  document`
-    Scenario: Basic math
+  Scenario`: Basic math
 
     Given x is ${1}
     And I add ${10} to x
@@ -66,10 +65,9 @@ yarn add cucamelon --dev
   - [x] BDD style
   - [x] TDD style
 - [x] Jasmine integration
-
-<h3>Experimental</h2>
-
+- [x] AST based parser covering most of Gherkin's syntax ( nanospec based )
 - [x] Typed arguments
+
 
 <h3>Planned</h2>
 
@@ -77,9 +75,3 @@ yarn add cucamelon --dev
 - [ ] Jest integration
 
 <h3>Under consideration</h2>
-
-- [ ] **AST based parser covering most of Gherkin's syntax**
-  - Pros:
-    - Better semantics and possibilities
-  - Cons:
-    - Increased complexity

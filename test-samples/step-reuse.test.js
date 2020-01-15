@@ -1,6 +1,6 @@
 const { expect } = require('chai')
 
-const { document } = require('../lib')
+const { Scenario } = require('../lib')
 
 suite('Samples', () => {
   suite('Step reuse', () => {
@@ -28,8 +28,7 @@ suite('Samples', () => {
       }
     })
 
-    document`
-      Scenario: 1 + 2 = 3
+    Scenario`: 1 + 2 = 3
 
       Given x is 1
       And I add 10 to x

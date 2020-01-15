@@ -1,6 +1,6 @@
 const { expect } = require('chai')
 
-const { document } = require('../lib')
+const { Scenario } = require('../lib')
 
 suite('Samples', () => {
   suite('Typed arguments', () => {
@@ -14,8 +14,7 @@ suite('Samples', () => {
       }
     })
 
-    document`
-      Scenario: Basic math
+    Scenario`: Basic math
 
       Given x is ${1}
       And I add ${10} to x
