@@ -1,6 +1,6 @@
 const { expect } = require('chai')
 
-const { runSteps } = require('../lib')
+const { document } = require('../lib')
 
 suite('Samples', () => {
   suite('Step reuse', () => {
@@ -28,7 +28,7 @@ suite('Samples', () => {
       }
     })
 
-    suite(`
+    document`
       Scenario: 1 + 2 = 3
 
       Given x is 1
@@ -37,6 +37,6 @@ suite('Samples', () => {
       And y is 2
       When I sum x and y
       Then I get 33
-    `, runSteps)
+    `
   })
 })

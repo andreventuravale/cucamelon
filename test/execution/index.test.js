@@ -13,7 +13,7 @@ suite('Execution', () => {
 
     this.run = rewiremock.proxy('../../lib/run', {
       './it': () => this.fakeIt
-    })()
+    })
   })
 
   test('Each step executes itself plus all the others before', function () {

@@ -1,6 +1,6 @@
 const { expect } = require('chai')
-const { runSteps } = require('../../lib')
 const rewiremock = require('rewiremock').default
+const run = require('../../lib/run')
 
 suite('Execution', () => {
   suite('Arguments', () => {
@@ -32,7 +32,7 @@ suite('Execution', () => {
         And y is 2
         When I sum x and y
         Then I get 3
-      `, runSteps)
+      `, run)
     })
 
     suite('Unknow argument types.', () => {
@@ -64,7 +64,7 @@ suite('Execution', () => {
 
       test(`"foo" isn't a valid type`, function () {
         expect(() => {
-          this.run().call(this.fakeSpec)
+          this.run.call(this.fakeSpec)
         }).to.throw('Step "x is {foo}" asks for an unknow argument type: "foo". Please use one of the following: "json", "number", "date", "object" or "string".')
       })
     })

@@ -1,117 +1,24 @@
-const { isEqual } = require('lodash')
 const rewiremock = require('rewiremock').default
 const td = require('testdouble')
 
-const isDeepEqual = td.matchers.create({
-  name: 'isDeepEqual',
-  matches: function ([a], b) {
-    return isEqual(a, b)
-  }
-})
-
 suite('Document template function', () => {
   setup(function () {
-    this.testInstance = {
-      steps: {
-        'Laborum ut exercitation laborum anim enim ad sit dolore id.': () => { },
-        'Dolor mollit nulla sit cupidatat nostrud adipisicing laboris eu consectetur sit minim.': () => { },
-        'Dolor elit elit incididunt consequat esse elit.': () => { }
-      }
-    }
-
-    this.fakeRun = td.func()
-    this.fakeSuite = td.func()
-
-    rewiremock.forceCacheClear()
-
-    this.document = rewiremock.proxy('../../lib/document', {
-      './run': this.fakeRun,
-      './suite': () => this.fakeSuite
-    })
   })
 
   teardown(() => td.reset())
 
   test('Calls the suite definition as expected and delegates execution to the run function', function () {
+    this.fakeRun = td.func()
+    this.fakeSuite = td.func()
+
     td.when(
-      this.fakeRun(
-        isDeepEqual(
-          {
-            'type': 'statement',
-            'subtype': 'scenario',
-            'nodes': [
-              {
-                'type': 'title',
-                'text': 'Aute et laborum laboris laborum pariatur laboris velit ea aliquip ut dolore cillum.'
-              },
-              {
-                'type': 'summary',
-                'text': 'Culpa nisi tempor sint voluptate cupidatat laborum ex duis non duis aliqua enim ex irure.'
-              },
-              {
-                'type': 'summary',
-                'text': 'Minim sit Lorem incididunt reprehenderit aliqua cupidatat id aliquip consequat incididunt dolore in.'
-              },
-              {
-                'type': 'step',
-                'subtype': 'given',
-                'nodes': [
-                  {
-                    'type': 'definition',
-                    'text': 'Laborum ut exercitation laborum anim enim ad sit dolore id.'
-                  },
-                  {
-                    'type': 'token',
-                    'subtype': 'keyword',
-                    'text': 'Given'
-                  }
-                ]
-              },
-              {
-                'type': 'step',
-                'subtype': 'and',
-                'nodes': [
-                  {
-                    'type': 'definition',
-                    'text': 'Dolor mollit nulla sit cupidatat nostrud adipisicing laboris eu consectetur sit minim.'
-                  },
-                  {
-                    'type': 'token',
-                    'subtype': 'keyword',
-                    'text': 'And'
-                  }
-                ]
-              },
-              {
-                'type': 'step',
-                'subtype': 'but',
-                'nodes': [
-                  {
-                    'type': 'definition',
-                    'text': 'Dolor elit elit incididunt consequat esse elit.'
-                  },
-                  {
-                    'type': 'token',
-                    'subtype': 'keyword',
-                    'text': 'But'
-                  }
-                ]
-              },
-              {
-                'subtype': 'keyword',
-                'text': 'Scenario',
-                'type': 'token'
-              },
-              {
-                'subtype': 'colon',
-                'text': ':',
-                'type': 'token'
-              }
-            ]
-          }
-        )
-      )
-    ).thenReturn('the return from run')
+      this.fakeRun(require('./metadata.json'))
+    ).thenReturn('the return from run(metadata)')
+
+    this.document = rewiremock.proxy('../../lib/document', {
+      './runWithMetadata': this.fakeRun,
+      './suite': () => this.fakeSuite
+    })
 
     this.document([
       'Scenario: Aute et laborum laboris laborum pariatur laboris velit ea aliquip ut dolore cillum.',
@@ -133,7 +40,7 @@ suite('Document template function', () => {
           `      Minim sit Lorem incididunt reprehenderit aliqua cupidatat id aliquip consequat incididunt dolore in.`,
           ``
         ].join('\n'),
-        'the return from run'
+        'the return from run(metadata)'
       )
     )
   })

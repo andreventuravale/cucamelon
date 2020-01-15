@@ -15,46 +15,6 @@
 ```javascript
 const { expect } = require('chai')
 
-const { runSteps } = require('cucamelon')
-
-suite('Basic Math', () => {
-  setup(function () {
-    this.steps = {
-      'x is 1': function () {
-        this.x = 1
-      },
-
-      'y is 2': function () {
-        this.y = 2
-      },
-
-      'I sum x and y': function () {
-        this.z = this.x + this.y
-      },
-
-      'I get 3': function () {
-        expect(this.z).to.eql(3)
-      }
-    }
-  })
-
-  suite(`
-    Scenario: 1 + 2 = 3
-
-    Given x is 1
-    And y is 2
-    When I sum x and y
-    Then I get 3
-  `, runSteps)
-  })
-})
-```
-
-<h3>Typed arguments using the document template function</h2>
-
-```javascript
-const { expect } = require('chai')
-
 const { document } = require('cucamelon')
 
 suite('Basic Math', () => {

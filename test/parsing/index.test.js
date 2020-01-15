@@ -437,23 +437,14 @@ suite('Parsing', () => {
     })
   })
 
-  test('Given an empty text it returns an empty array', () => {
-    const text = ' \r\n\t \t\n\r '
-
-    expect(() => parse(text)).to.throw(`Sorry I could not understand the gherkin:
+  ;[' \r\n\t \t\n\r ', undefined, null].forEach(text =>
+    test('Given an empty text it returns an empty array', () => {
+      expect(() => parse(text)).to.throw(`Sorry I could not understand the gherkin:
 
 \`\`\`
 ${text}
 \`\`\`
 
 I was specting a feature, background, scenario, scenario outline, example, etc.`)
-  })
-
-  test('Given an undefined text it throws an error', () => {
-    expect(() => parse(undefined)).to.throw('The text input is not a string')
-  })
-
-  test('Given an null text it throws an error', () => {
-    expect(() => parse(null)).to.throw('The text input is not a string')
-  })
+    }))
 })

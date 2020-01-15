@@ -14,7 +14,7 @@ suite('Execution', () => {
 
       this.run = rewiremock.proxy('../../lib/run', {
         './it': () => this.fakeIt
-      })()
+      })
     })
 
     test('Invalid gherkin input', function () {

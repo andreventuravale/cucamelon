@@ -1,6 +1,6 @@
 const { expect } = require('chai')
 
-const { runSteps } = require('../../../lib')
+const run = require('../../../lib/run')
 
 suite('Integration', () => {
   suite('Mocha', () => {
@@ -32,7 +32,7 @@ suite('Integration', () => {
         And y is 2
         When I sum x and y
         Then I get 3
-      `, runSteps)
+      `, run)
     })
   })
 })

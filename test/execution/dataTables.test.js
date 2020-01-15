@@ -1,5 +1,5 @@
 const { expect } = require('chai')
-const { runSteps } = require('../../lib')
+const run = require('../../lib/run')
 
 suite('Execution', () => {
   suite('Data tables', () => {
@@ -23,6 +23,6 @@ suite('Execution', () => {
         |         foo|10      | 
         |    bar     |   20   |
         | baz        |      30|
-    `, runSteps)
+    `, run)
   })
 })
