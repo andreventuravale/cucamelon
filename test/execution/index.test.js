@@ -11,7 +11,7 @@ suite('Execution', () => {
 
     rewiremock.forceCacheClear()
 
-    this.run = rewiremock.proxy('../../lib/run', {
+    this.run = rewiremock.proxy('../../lib/run-spec', {
       './it': () => this.fakeIt
     })
   })

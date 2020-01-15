@@ -16,7 +16,7 @@ suite('Document template function', () => {
     ).thenReturn('the return from run(metadata)')
 
     this.document = rewiremock.proxy('../../lib/document', {
-      './runWithMetadata': this.fakeRun,
+      './run-metadata': this.fakeRun,
       './suite': () => this.fakeSuite
     })
 

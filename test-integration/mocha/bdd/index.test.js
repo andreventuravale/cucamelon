@@ -1,6 +1,6 @@
 const { expect } = require('chai')
 
-const run = require('../../../lib/run')
+const run = require('../../../lib/run-spec')
 
 describe('Integration', () => {
   describe('Mocha', () => {

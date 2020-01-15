@@ -1,5 +1,5 @@
 const { expect } = require('chai')
-const run = require('../../lib/run')
+const run = require('../../lib/run-spec')
 
 suite('Execution', () => {
   suite('Data tables', () => {

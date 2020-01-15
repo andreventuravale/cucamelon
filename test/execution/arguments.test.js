@@ -1,6 +1,6 @@
 const { expect } = require('chai')
 const rewiremock = require('rewiremock').default
-const run = require('../../lib/run')
+const run = require('../../lib/run-spec')
 
 suite('Execution', () => {
   suite('Arguments', () => {
@@ -57,7 +57,7 @@ suite('Execution', () => {
 
         rewiremock.forceCacheClear()
 
-        this.run = rewiremock.proxy('../../lib/run', {
+        this.run = rewiremock.proxy('../../lib/run-spec', {
           './it': this.fakeIt
         })
       })
