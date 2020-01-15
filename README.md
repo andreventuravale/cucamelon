@@ -50,7 +50,7 @@ suite('Basic Math', () => {
 })
 ```
 
-<h3>Typed arguments using the feature utility</h2>
+<h3>Typed arguments using the document template function</h2>
 
 ```javascript
 const { expect } = require('chai')
@@ -60,11 +60,11 @@ const { document } = require('cucamelon')
 suite('Basic Math', () => {
   setup(function () {
     this.steps = {
-      'x is (.*)'      : function (x)   { this.x = x },
-      'I add (.*) to x': function (add) { this.x += add },
-      'y is (.*)'      : function (y)   { this.y = y },
-      'I sum x and y'  : function ()    { this.z = this.x + this.y },
-      'I get (.*)'     : function (z)   { expect(this.z).to.eql(z) }
+      'x is {number}'      : function (x)   { this.x = x },
+      'I add {number} to x': function (add) { this.x += add },
+      'y is {number}'      : function (y)   { this.y = y },
+      'I sum x and y'      : function ()    { this.z = this.x + this.y },
+      'I get {number}'     : function (z)   { expect(this.z).to.eql(z) }
     }
   })
 
