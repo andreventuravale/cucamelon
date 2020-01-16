@@ -1,0 +1,65 @@
+{
+  "type": "statement",
+  "subtype": "scenario",
+  "nodes": [
+    {
+      "type": "title",
+      "text": "Aute et laborum laboris laborum pariatur laboris velit ea aliquip ut dolore cillum."
+    },
+    {
+      "type": "step",
+      "subtype": "given",
+      "nodes": [
+        {
+          "type": "definition",
+          "text": "Laborum ut exercitation laborum anim enim ad sit dolore id."
+        },
+        {
+          "type": "token",
+          "subtype": "keyword",
+          "text": "Given"
+        }
+      ]
+    },
+    {
+      "type": "step",
+      "subtype": "and",
+      "nodes": [
+        {
+          "type": "definition",
+          "text": "Dolor mollit nulla sit cupidatat nostrud adipisicing laboris eu consectetur sit minim."
+        },
+        {
+          "type": "token",
+          "subtype": "keyword",
+          "text": "And"
+        }
+      ]
+    },
+    {
+      "type": "step",
+      "subtype": "but",
+      "nodes": [
+        {
+          "type": "definition",
+          "text": "Dolor elit elit incididunt consequat esse elit."
+        },
+        {
+          "type": "token",
+          "subtype": "keyword",
+          "text": "But"
+        }
+      ]
+    },
+    {
+      "type": "token",
+      "subtype": "keyword",
+      "text": "Scenario"
+    },
+    {
+      "type": "token",
+      "subtype": "colon",
+      "text": ":"
+    }
+  ]
+}
